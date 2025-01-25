@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SkillPage extends StatefulWidget {
-  const SkillPage({Key? key}) : super(key: key); // Add const constructor
+  const SkillPage({Key? key}) : super(key: key);
 
   @override
   _SkillPageState createState() => _SkillPageState();
@@ -14,33 +14,6 @@ class _SkillPageState extends State<SkillPage> {
   String? _selectedProficiency;
   final List<String> _proficiencyOptions = ['Beginner', 'Intermediate', 'Advanced'];
 
-<<<<<<< Updated upstream
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Add Your Skills'),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.settings),
-              onPressed: () {
-                // Handle settings icon press
-              },
-            ),
-          ],
-        ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              // Your existing code for the body
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-=======
   void _addSkill() {
     final skill = _skillController.text;
     final experience = _experienceController.text;
@@ -154,5 +127,4 @@ class _SkillPageState extends State<SkillPage> {
       ),
     );
   }
->>>>>>> Stashed changes
 }
