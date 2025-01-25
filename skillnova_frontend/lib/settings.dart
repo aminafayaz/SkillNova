@@ -11,8 +11,17 @@ class SettingsPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () async {
-            await FirebaseAuth.instance.signOut();
-            Navigator.of(context).pushReplacementNamed('/login');
+            try {
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushReplacementNamed('/login');
+            } catch (e) {
+              // Handle error
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Error signing out. Please try again.'),
+                ),
+              );
+            }
           },
           child: Text('Log Out'),
         ),
