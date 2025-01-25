@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "250257294368",
+    "project_id": "skillmatrix-6f87d",
+    "storage_bucket": "skillmatrix-6f87d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250257294368:android:b2db13dfdee500b0006845",
+        "android_client_info": {
+          "package_name": "com.example.skillmatrix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3w4Cu4DZJeu6N7dbaVwKlcN0zeMMo4q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250257294368:android:7821f23d45f2e160006845",
+        "android_client_info": {
+          "package_name": "com.example.skillnova_frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3w4Cu4DZJeu6N7dbaVwKlcN0zeMMo4q4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
