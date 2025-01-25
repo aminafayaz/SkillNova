@@ -1,38 +1,58 @@
 import 'package:flutter/material.dart';
 
-class Explorepage extends StatelessWidget {
-  const Explorepage({super.key});
+class ExplorePage extends StatelessWidget {
+  final List<Map<String, String>> skills = [
+    {'name': 'Watercolour Painting', 'description': 'Learn the art of watercolour painting.'},
+    {'name': 'Yoga', 'description': 'Practice yoga for a healthy mind and body.'},
+    {'name': 'Fix Bicycles', 'description': 'Learn to repair and maintain bicycles.'},
+    {'name': 'Cooking', 'description': 'Master the art of cooking delicious meals.'},
+    {'name': 'Gardening', 'description': 'Grow your own plants and vegetables.'},
+    {'name': 'Photography', 'description': 'Capture stunning photos with your camera.'},
+    {'name': 'Woodworking', 'description': 'Create beautiful wooden crafts and furniture.'},
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Explore Skills'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  prefixIcon: Icon(Icons.search),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Search skills...',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
                 ),
+                prefixIcon: Icon(Icons.search),
               ),
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 5, // specify the number of items
+                itemCount: skills.length,
                 itemBuilder: (context, index) {
                   return Container(
                     height: 100,
                     margin: EdgeInsets.all(8.0),
                     color: Colors.blue,
-                    child: Center(
-                      child: Text(
-                        'Item $index',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            skills[index]['name']!,
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          SizedBox(height: 8.0),
+                          Text(
+                            skills[index]['description']!,
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                        ],
                       ),
                     ),
                   );
