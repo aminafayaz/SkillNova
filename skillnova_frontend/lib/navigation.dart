@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skillnova_frontend/explorepage.dart';
+import 'package:skillnova_frontend/settings.dart';
 import 'package:skillnova_frontend/skillpage.dart';
 
 class NavigationPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class _NavigationPageState extends State<NavigationPage> {
   static List<Widget> _pages = <Widget>[
     SkillPage(),
     ExplorePage(),
+    SettingsPage()
   ];
 
   void _onItemTapped(int index) {
@@ -38,6 +40,10 @@ class _NavigationPageState extends State<NavigationPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
             label: 'Explore',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
           ),
         ],
         currentIndex: _selectedIndex,
