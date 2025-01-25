@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'chat_page.dart';
+import 'skill_detail_page.dart';
 
 class ExplorePage extends StatelessWidget {
   final List<Map<String, String>> skills = [
@@ -28,7 +28,19 @@ class ExplorePage extends StatelessWidget {
     ],
     'Cooking': [
       {'name': 'Grace', 'proficiency': 'Expert'},
-      {'name': 'Heidi', 'proficiency': 'Beginner'},
+      {'name': 'Heidi', 'proficiency': 'Advanced'},
+    ],
+    'Gardening': [
+      {'name': 'Ivan', 'proficiency': 'Beginner'},
+      {'name': 'Judy', 'proficiency': 'Intermediate'},
+    ],
+    'Photography': [
+      {'name': 'Mallory', 'proficiency': 'Advanced'},
+      {'name': 'Niaj', 'proficiency': 'Beginner'},
+    ],
+    'Woodworking': [
+      {'name': 'Olivia', 'proficiency': 'Expert'},
+      {'name': 'Peggy', 'proficiency': 'Intermediate'},
     ],
   };
 
@@ -49,32 +61,63 @@ class ExplorePage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: skills.length,
-        itemBuilder: (context, index) {
-          return ExpansionTile(
-            title: Text(skills[index]['name']!),
-            subtitle: Text(skills[index]['description']!),
-            children: usersBySkill[skills[index]['name']]!.map((user) {
-              return ListTile(
-                title: Text(user['name']!),
-                subtitle: Text('Proficiency: ${user['proficiency']}'),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ChatPage(
-                        userName: user['name']!,
-                        userCredits: availableCredits,
-                        skillProviderCredits: 0, // Initial credits for skill provider
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Search skills...',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                prefixIcon: Icon(Icons.search),
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: skills.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SkillDetailPage(
+                            skillName: skills[index]['name']!,
+                            users: usersBySkill[skills[index]['name']]!,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 100,
+                      margin: EdgeInsets.all(8.0),
+                      color: Colors.blue,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              skills[index]['name']!,
+                              style: TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            SizedBox(height: 8.0),
+                            Text(
+                              skills[index]['description']!,
+                              style: TextStyle(color: Colors.white, fontSize: 16),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
                 },
-              );
-            }).toList(),
-          );
-        },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
