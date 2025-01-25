@@ -17,79 +17,23 @@ class _SkillPageState extends State<SkillPage> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Add Your Skills'),
-          centerTitle: true,
-        ),
-        body: Column(
-          children: [
-            // Show the list of added skills
-            Expanded(
-              child: ListView.builder(
-                itemCount: _skills.length,
-                itemBuilder: (context, index) => ListTile(
-                  leading: Icon(Icons.check),
-                  title: Text(_skills[index]),
-                ),
-              ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                // Handle settings icon press
+              },
             ),
-            SizedBox(height: 16),
-            // Button to open overlay
-            ElevatedButton(
-              onPressed: () => _showAddSkillDialog(context),
-              child: Text('Add Skill'),
-            ),
-            SizedBox(height: 16),
           ],
         ),
-      ),
-    );
-  }
-
-  void _showAddSkillDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          title: Text('Add a Skill'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: _skillController,
-                decoration: InputDecoration(
-                  labelText: 'Enter your skill',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              SizedBox(height: 10),
-              TextField(
-                controller: _experienceController,
-                decoration: InputDecoration(
-                  labelText: 'Enter your experience',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              SizedBox(height: 10),
-              TextField(
-                controller: _proficiencyController,
-                decoration: InputDecoration(
-                  labelText: 'Enter your proficiency',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  // Add your save functionality here
-                },
-                child: Text('Save'),
-              ),
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              // Your existing code for the body
             ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
