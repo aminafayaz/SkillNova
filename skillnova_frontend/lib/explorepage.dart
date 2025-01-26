@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'skill_detail_page.dart';
 
-class ExplorePage extends StatelessWidget {
+class ExplorePage extends StatefulWidget {
+  final int creditPoints;
+  final Function(int) updateCreditPoints;
+
+  ExplorePage({required this.creditPoints, required this.updateCreditPoints});
+
+  @override
+  _ExplorePageState createState() => _ExplorePageState();
+}
+
+class _ExplorePageState extends State<ExplorePage> {
   final List<Map<String, String>> skills = [
     {'name': 'Watercolour Painting', 'description': 'Learn the art of watercolour painting.'},
     {'name': 'Yoga', 'description': 'Practice yoga for a healthy mind and body.'},
@@ -12,7 +22,6 @@ class ExplorePage extends StatelessWidget {
     {'name': 'Woodworking', 'description': 'Create beautiful wooden crafts and furniture.'},
   ];
 
-  final int availableCredits = 100; // Example value for available credits
   final Map<String, List<Map<String, String>>> usersBySkill = {
     'Watercolour Painting': [
       {'name': 'Alice', 'proficiency': 'Intermediate'},
@@ -40,32 +49,62 @@ class ExplorePage extends StatelessWidget {
     ],
   };
 
+  void _updateCredits(String proficiency, bool isHelping) {
+    int points = 0;
+    switch (proficiency) {
+      case 'Beginner':
+        points = 100;
+        break;
+      case 'Intermediate':
+        points = 500;
+        break;
+      case 'Advanced':
+        points = 1000;
+        break;
+      case 'Expert':
+        points = 1500;
+        break;
+    }
+    widget.updateCreditPoints(isHelping ? points : -points);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Explore Skills'),
       ),
-      body: ListView.builder(
-        itemCount: skills.length,
-        itemBuilder: (context, index) {
-          final skill = skills[index];
-          return ListTile(
-            title: Text(skill['name']!),
-            subtitle: Text(skill['description']!),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SkillDetailPage(
-                    skillName: skill['name']!,
-                    users: usersBySkill[skill['name']]!,
-                  ),
-                ),
-              );
-            },
-          );
-        },
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text('Credit Points: ${widget.creditPoints}'),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: skills.length,
+              itemBuilder: (context, index) {
+                final skill = skills[index];
+                return ListTile(
+                  title: Text(skill['name']!),
+                  subtitle: Text(skill['description']!),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SkillDetailPage(
+                          skillName: skill['name']!,
+                          users: usersBySkill[skill['name']]!,
+                          updateCreditsCallback: _updateCredits,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
