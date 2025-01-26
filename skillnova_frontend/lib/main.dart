@@ -1,8 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:skillnova_frontend/navigation.dart';
-import 'package:skillnova_frontend/authpage.dart';
-
+import 'authpage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Authpage(),
+      home: AuthPage(),
     );
   }
 }

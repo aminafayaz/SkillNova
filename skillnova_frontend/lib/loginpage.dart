@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skillnova_frontend/authpage.dart';
 import 'package:skillnova_frontend/components/MyButton.dart';
 import 'package:skillnova_frontend/components/MyTextField.dart';
 import'package:firebase_core/firebase_core.dart';
@@ -31,15 +30,14 @@ class _LoginpageState extends State<Loginpage> {
       password: passwordController.text
       );
       Navigator.pop(context);
-      Navigator.pushReplacementNamed(context, '/navigation');
     }on FirebaseAuthException catch (e){
-      Navigator.pop(context);
       if (e.code == 'user-not-found'){
         wrongEmailMessage();
       }else if (e.code == 'wrong-password'){
         wrongPasswordMessage();
       }
     }
+    Navigator.pop(context);
   }
 
 
@@ -90,7 +88,7 @@ class _LoginpageState extends State<Loginpage> {
                 // Username textfield
                 MyTextField(
                   controller: usernameController,
-                  hintText: 'Email',
+                  hintText: 'Username',
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),

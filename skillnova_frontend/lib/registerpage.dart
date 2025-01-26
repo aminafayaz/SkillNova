@@ -17,9 +17,7 @@ class _RegisterpageState extends State<Registerpage> {
   final TextEditingController confirmPasswordController = TextEditingController();
 
   // Sign user in method
-  void signUserIn(
-    
-  ) {}
+  void signUserIn() {}
 
   @override
   Widget build(BuildContext context) {
