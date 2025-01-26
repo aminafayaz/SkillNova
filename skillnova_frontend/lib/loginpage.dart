@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:skillnova_frontend/authpage.dart';
 import 'package:skillnova_frontend/components/MyButton.dart';
 import 'package:skillnova_frontend/components/MyTextField.dart';
 import'package:firebase_core/firebase_core.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:skillnova_frontend/registerpage.dart';
 
 class Loginpage extends StatefulWidget {
   const Loginpage({super.key});
@@ -31,15 +31,14 @@ class _LoginpageState extends State<Loginpage> {
       password: passwordController.text
       );
       Navigator.pop(context);
-      Navigator.pushReplacementNamed(context, '/navigation');
     }on FirebaseAuthException catch (e){
-      Navigator.pop(context);
       if (e.code == 'user-not-found'){
         wrongEmailMessage();
       }else if (e.code == 'wrong-password'){
         wrongPasswordMessage();
       }
     }
+    Navigator.pop(context);
   }
 
 
@@ -90,7 +89,7 @@ class _LoginpageState extends State<Loginpage> {
                 // Username textfield
                 MyTextField(
                   controller: usernameController,
-                  hintText: 'Email',
+                  hintText: 'Username',
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
@@ -162,11 +161,19 @@ class _LoginpageState extends State<Loginpage> {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
-                    const Text(
-                      'Register now',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
+                    GestureDetector(
+                        onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Registerpage()),
+                );
+              },
+                      child: const Text(
+                        'Register now',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

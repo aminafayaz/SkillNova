@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skillnova_frontend/globals.dart' as globals;
 
 class HelpPage extends StatefulWidget {
   @override
@@ -11,8 +12,6 @@ class _HelpPageState extends State<HelpPage> {
     {'skill': 'Yoga', 'description': 'Looking for advanced yoga poses.', 'proficiency': 'Advanced'},
     // Add more requests here
   ];
-
-  int _remainingCredits = 0; // Initial credit points
 
   void _endChat(String proficiency) {
     int points = 0;
@@ -31,7 +30,7 @@ class _HelpPageState extends State<HelpPage> {
         break;
     }
     setState(() {
-      _remainingCredits += points;
+      globals.remainingCredits += points;
     });
   }
 
@@ -45,7 +44,7 @@ class _HelpPageState extends State<HelpPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text('Remaining Credits: $_remainingCredits'),
+            Text('Remaining Credits: ${globals.remainingCredits}'),
             Expanded(
               child: ListView.builder(
                 itemCount: _requests.length,
@@ -134,7 +133,8 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat with ${widget.userName}'),
+        automaticallyImplyLeading: false, // Remove the back button
+        title: Text('${widget.userName}'),
         actions: [
           IconButton(
             icon: Icon(Icons.exit_to_app),
@@ -168,10 +168,13 @@ class _ChatPageState extends State<ChatPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      hintText: 'Enter your message',
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        hintText: 'Enter your message',
+                      ),
                     ),
                   ),
                 ),
@@ -186,16 +189,5 @@ class _ChatPageState extends State<ChatPage> {
         ],
       ),
     );
-  }
-}
-
-class CreditsProvider with ChangeNotifier {
-  int _remainingCredits = 500;
-
-  int get remainingCredits => _remainingCredits;
-
-  void updateCredits(int points) {
-    _remainingCredits += points;
-    notifyListeners();
   }
 }

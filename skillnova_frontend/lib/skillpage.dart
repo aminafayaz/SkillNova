@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skillnova_frontend/settings.dart';
 
 class SkillPage extends StatefulWidget {
   @override
@@ -7,8 +8,16 @@ class SkillPage extends StatefulWidget {
 
 class _SkillPageState extends State<SkillPage> {
   final List<Map<String, String>> _skills = [
-    {'skill': 'Watercolour Painting', 'description': 'Learn the art of watercolour painting.', 'proficiency': 'Intermediate'},
-    {'skill': 'Yoga', 'description': 'Practice yoga for a healthy mind and body.', 'proficiency': 'Advanced'},
+    {
+      'skill': 'Watercolour Painting',
+      'description': 'Learn the art of watercolour painting.',
+      'proficiency': 'Intermediate'
+    },
+    {
+      'skill': 'Yoga',
+      'description': 'Practice yoga for a healthy mind and body.',
+      'proficiency': 'Advanced'
+    },
     // Add more skills here
   ];
 
@@ -17,7 +26,9 @@ class _SkillPageState extends State<SkillPage> {
   String? _selectedProficiency;
 
   void _addSkill() {
-    if (_skillController.text.isNotEmpty && _descriptionController.text.isNotEmpty && _selectedProficiency != null) {
+    if (_skillController.text.isNotEmpty &&
+        _descriptionController.text.isNotEmpty &&
+        _selectedProficiency != null) {
       setState(() {
         _skills.add({
           'skill': _skillController.text,
@@ -92,7 +103,10 @@ class _SkillPageState extends State<SkillPage> {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              // Handle settings icon press
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
+                );
             },
           ),
         ],
