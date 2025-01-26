@@ -38,10 +38,6 @@ class ExplorePage extends StatelessWidget {
       {'name': 'Mallory', 'proficiency': 'Advanced'},
       {'name': 'Niaj', 'proficiency': 'Beginner'},
     ],
-    'Woodworking': [
-      {'name': 'Olivia', 'proficiency': 'Expert'},
-      {'name': 'Peggy', 'proficiency': 'Intermediate'},
-    ],
   };
 
   @override
@@ -49,75 +45,27 @@ class ExplorePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Explore Skills'),
-        actions: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Credits: $availableCredits',
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
-          ),
-        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Search skills...',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+      body: ListView.builder(
+        itemCount: skills.length,
+        itemBuilder: (context, index) {
+          final skill = skills[index];
+          return ListTile(
+            title: Text(skill['name']!),
+            subtitle: Text(skill['description']!),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SkillDetailPage(
+                    skillName: skill['name']!,
+                    users: usersBySkill[skill['name']]!,
+                  ),
                 ),
-                prefixIcon: Icon(Icons.search),
-              ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: skills.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SkillDetailPage(
-                            skillName: skills[index]['name']!,
-                            users: usersBySkill[skills[index]['name']]!,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      height: 100,
-                      margin: EdgeInsets.all(8.0),
-                      color: Colors.blue,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              skills[index]['name']!,
-                              style: TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                            SizedBox(height: 8.0),
-                            Text(
-                              skills[index]['description']!,
-                              style: TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
+              );
+            },
+          );
+        },
       ),
     );
   }
