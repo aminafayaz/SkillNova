@@ -88,7 +88,7 @@ class _RegisterpageState extends State<Registerpage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        'Forgot Password?',
+                        '',
                         style: TextStyle(color: Colors.grey[600]),
                       ),
                     ],
@@ -136,12 +136,12 @@ class _RegisterpageState extends State<Registerpage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Not a member?',
+                      'Already a member?',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                     const SizedBox(width: 4),
                     const Text(
-                      'Register now',
+                      'Login Instead',
                       style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
