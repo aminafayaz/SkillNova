@@ -84,9 +84,18 @@ This page is being followed by a chat page where we can chat with the right peop
 ![hack2](https://github.com/user-attachments/assets/dacd8909-e7f3-4e08-add6-2ab858ec21ce)
 
 
+Screenshot5-Selecting people to chat with
+![hack1](https://github.com/user-attachments/assets/e0256822-9140-4cde-92c1-333e4e43fdc7)
 
 
-Screenshot5-Settings page which contain logout option
+
+Screenshot 6-Chat page 
+![hack2](https://github.com/user-attachments/assets/e086728d-a433-424d-af2b-77fb36ddfd38)
+
+
+
+
+Screenshot 6-Settings page which contain logout option
 
 This settings contais the logout option which helps the user to logout after the session.
 ![hack3](https://github.com/user-attachments/assets/9e9634cd-9c1a-4fe8-8543-4c70bb1415fc)
