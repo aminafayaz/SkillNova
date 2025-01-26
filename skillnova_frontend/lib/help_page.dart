@@ -1,92 +1,21 @@
 import 'package:flutter/material.dart';
 
-class SkillPage extends StatefulWidget {
+class HelpPage extends StatefulWidget {
   final int creditPoints;
   final Function(int) updateCreditPoints;
 
-  SkillPage({required this.creditPoints, required this.updateCreditPoints});
+  HelpPage({required this.creditPoints, required this.updateCreditPoints});
 
   @override
-  _SkillPageState createState() => _SkillPageState();
+  _HelpPageState createState() => _HelpPageState();
 }
 
-class _SkillPageState extends State<SkillPage> {
-  final List<Map<String, String>> _skills = [
-    {'skill': 'Watercolour Painting', 'description': 'Learn the art of watercolour painting.', 'proficiency': 'Intermediate'},
-    {'skill': 'Yoga', 'description': 'Practice yoga for a healthy mind and body.', 'proficiency': 'Advanced'},
-    // Add more skills here
+class _HelpPageState extends State<HelpPage> {
+  final List<Map<String, String>> _requests = [
+    {'skill': 'Watercolour Painting', 'description': 'Need help with watercolour techniques.', 'proficiency': 'Beginner'},
+    {'skill': 'Yoga', 'description': 'Looking for advanced yoga poses.', 'proficiency': 'Advanced'},
+    // Add more requests here
   ];
-
-  final TextEditingController _skillController = TextEditingController();
-  final TextEditingController _descriptionController = TextEditingController();
-  String? _selectedProficiency;
-
-  void _addSkill() {
-    if (_skillController.text.isNotEmpty && _descriptionController.text.isNotEmpty && _selectedProficiency != null) {
-      setState(() {
-        _skills.add({
-          'skill': _skillController.text,
-          'description': _descriptionController.text,
-          'proficiency': _selectedProficiency!,
-        });
-        _skillController.clear();
-        _descriptionController.clear();
-        _selectedProficiency = null;
-      });
-      Navigator.of(context).pop(); // Close the overlay
-    }
-  }
-
-  void _showAddSkillOverlay(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Add Skill'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: _skillController,
-                decoration: InputDecoration(labelText: 'Skill'),
-              ),
-              TextField(
-                controller: _descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
-              ),
-              DropdownButton<String>(
-                value: _selectedProficiency,
-                hint: Text('Select Proficiency'),
-                items: ['Beginner', 'Intermediate', 'Advanced', 'Expert']
-                    .map((proficiency) => DropdownMenuItem(
-                          value: proficiency,
-                          child: Text(proficiency),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  setState(() {
-                    _selectedProficiency = value;
-                  });
-                },
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the overlay
-              },
-              child: Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: _addSkill,
-              child: Text('Add Skill'),
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   void _updateCredits(String proficiency, bool isHelping) {
     int points = 0;
@@ -111,7 +40,7 @@ class _SkillPageState extends State<SkillPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Skills'),
+        title: Text('Help Requests'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -120,9 +49,9 @@ class _SkillPageState extends State<SkillPage> {
             Text('Credit Points: ${widget.creditPoints}'),
             Expanded(
               child: ListView.builder(
-                itemCount: _skills.length,
+                itemCount: _requests.length,
                 itemBuilder: (context, index) {
-                  final skill = _skills[index];
+                  final request = _requests[index];
                   return Container(
                     margin: EdgeInsets.symmetric(vertical: 5),
                     padding: EdgeInsets.all(10),
@@ -134,16 +63,16 @@ class _SkillPageState extends State<SkillPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          skill['skill']!,
+                          request['skill']!,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         SizedBox(height: 5),
-                        Text('Description: ${skill['description']}'),
+                        Text('Description: ${request['description']}'),
                         SizedBox(height: 5),
-                        Text('Proficiency: ${skill['proficiency']}'),
+                        Text('Proficiency: ${request['proficiency']}'),
                         SizedBox(height: 5),
                         ElevatedButton(
                           onPressed: () {
@@ -151,26 +80,21 @@ class _SkillPageState extends State<SkillPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => ChatPage(
-                                  userName: skill['skill']!,
-                                  proficiency: skill['proficiency']!,
+                                  userName: request['skill']!,
+                                  proficiency: request['proficiency']!,
                                   updateCreditsCallback: _updateCredits,
-                                  isHelping: false, // User is seeking help
+                                  isHelping: true, // User is helping
                                 ),
                               ),
                             );
                           },
-                          child: Text('Chat'),
+                          child: Text('Help'),
                         ),
                       ],
                     ),
                   );
                 },
               ),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => _showAddSkillOverlay(context),
-              child: Text('Add Skill'),
             ),
           ],
         ),
