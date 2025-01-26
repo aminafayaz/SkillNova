@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skillnova_frontend/explorepage.dart';
+import 'package:skillnova_frontend/help_page.dart';
 import 'package:skillnova_frontend/settings.dart';
 import 'package:skillnova_frontend/skillpage.dart';
 
@@ -16,7 +17,8 @@ class _NavigationPageState extends State<NavigationPage> {
   static List<Widget> _pages = <Widget>[
     SkillPage(),
     ExplorePage(),
-    SettingsPage()
+    // SettingsPage(),
+    HelpPage()
   ];
 
   void _onItemTapped(int index) {
@@ -42,9 +44,13 @@ class _NavigationPageState extends State<NavigationPage> {
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.square),
+            label: 'Offer Help',
           ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.settings),
+          //   label: 'Settings',
+          // ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],

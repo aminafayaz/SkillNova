@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'skill_detail_page.dart';
 
-class ExplorePage extends StatelessWidget {
+class ExplorePage extends StatefulWidget {
+  @override
+  _ExplorePageState createState() => _ExplorePageState();
+}
+
+class _ExplorePageState extends State<ExplorePage> {
   final List<Map<String, String>> skills = [
     {'name': 'Watercolour Painting', 'description': 'Learn the art of watercolour painting.'},
     {'name': 'Yoga', 'description': 'Practice yoga for a healthy mind and body.'},
@@ -12,7 +17,9 @@ class ExplorePage extends StatelessWidget {
     {'name': 'Woodworking', 'description': 'Create beautiful wooden crafts and furniture.'},
   ];
 
-  final int availableCredits = 100; // Example value for available credits
+  final int initialCredits = 5000; // Example initial credit points
+  int remainingCredits = 5000;
+
   final Map<String, List<Map<String, String>>> usersBySkill = {
     'Watercolour Painting': [
       {'name': 'Alice', 'proficiency': 'Intermediate'},
@@ -40,32 +47,64 @@ class ExplorePage extends StatelessWidget {
     ],
   };
 
+  void _endChat(String proficiency) {
+    int cost = 0;
+    switch (proficiency) {
+      case 'Beginner':
+        cost = 100;
+        break;
+      case 'Intermediate':
+        cost = 500;
+        break;
+      case 'Advanced':
+        cost = 1000;
+        break;
+      case 'Expert':
+        cost = 1500;
+        break;
+    }
+    setState(() {
+      remainingCredits -= cost;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Explore Skills'),
       ),
-      body: ListView.builder(
-        itemCount: skills.length,
-        itemBuilder: (context, index) {
-          final skill = skills[index];
-          return ListTile(
-            title: Text(skill['name']!),
-            subtitle: Text(skill['description']!),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SkillDetailPage(
-                    skillName: skill['name']!,
-                    users: usersBySkill[skill['name']]!,
-                  ),
-                ),
-              );
-            },
-          );
-        },
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text('Remaining Credits: $remainingCredits'),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: skills.length,
+              itemBuilder: (context, index) {
+                final skill = skills[index];
+                return ListTile(
+                  title: Text(skill['name']!),
+                  subtitle: Text(skill['description']!),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SkillDetailPage(
+                          skillName: skill['name']!,
+                          users: usersBySkill[skill['name']]!,
+                          endChatCallback: _endChat,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

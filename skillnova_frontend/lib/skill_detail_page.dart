@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class SkillDetailPage extends StatelessWidget {
   final String skillName;
   final List<Map<String, String>> users;
+  final Function(String) endChatCallback;
 
-  SkillDetailPage({required this.skillName, required this.users});
+  SkillDetailPage({required this.skillName, required this.users, required this.endChatCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,11 @@ class SkillDetailPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ChatPage(userName: user['name']!),
+                    builder: (context) => ChatPage(
+                      userName: user['name']!,
+                      proficiency: user['proficiency']!,
+                      endChatCallback: endChatCallback,
+                    ),
                   ),
                 );
               },
@@ -39,8 +44,10 @@ class SkillDetailPage extends StatelessWidget {
 
 class ChatPage extends StatefulWidget {
   final String userName;
+  final String proficiency;
+  final Function(String) endChatCallback;
 
-  ChatPage({required this.userName});
+  ChatPage({required this.userName, required this.proficiency, required this.endChatCallback});
 
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -60,6 +67,7 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void _endChat() {
+    widget.endChatCallback(widget.proficiency);
     Navigator.pop(context);
   }
 

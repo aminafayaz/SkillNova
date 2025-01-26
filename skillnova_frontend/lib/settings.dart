@@ -1,7 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:skillnova_frontend/authpage.dart';
+import 'package:skillnova_frontend/loginpage.dart';
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+
+  void logoutUser(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) =>Loginpage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,19 +22,7 @@ class SettingsPage extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () async {
-            try {
-              await FirebaseAuth.instance.signOut();
-              Navigator.of(context).pushReplacementNamed('/login');
-            } catch (e) {
-              // Handle error
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Error signing out. Please try again.'),
-                ),
-              );
-            }
-          },
+          onPressed: () => logoutUser(context),
           child: Text('Log Out'),
         ),
       ),

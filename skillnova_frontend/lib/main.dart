@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:skillnova_frontend/navigation.dart';
+import 'package:skillnova_frontend/loginpage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
