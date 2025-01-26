@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'skillpage.dart';
-import 'explorepage.dart';
-import 'help_page.dart';
+import 'package:skillnova_frontend/explorepage.dart';
+import 'package:skillnova_frontend/settings.dart';
+import 'package:skillnova_frontend/skillpage.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({Key? key}) : super(key: key);
@@ -12,18 +12,11 @@ class NavigationPage extends StatefulWidget {
 
 class _NavigationPageState extends State<NavigationPage> {
   int _selectedIndex = 0;
-  int _creditPoints = 0; // Initial credit points
 
-  void _updateCreditPoints(int points) {
-    setState(() {
-      _creditPoints += points;
-    });
-  }
-
-  static List<Widget> _pages(int creditPoints, Function(int) updateCreditPoints) => <Widget>[
-    SkillPage(creditPoints: creditPoints, updateCreditPoints: updateCreditPoints),
-    ExplorePage(creditPoints: creditPoints, updateCreditPoints: updateCreditPoints),
-    HelpPage(creditPoints: creditPoints, updateCreditPoints: updateCreditPoints),
+  static List<Widget> _pages = <Widget>[
+    SkillPage(),
+    ExplorePage(),
+    SettingsPage()
   ];
 
   void _onItemTapped(int index) {
@@ -36,21 +29,21 @@ class _NavigationPageState extends State<NavigationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _pages(_creditPoints, _updateCreditPoints)[_selectedIndex],
+        child: _pages.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Skills',
+            icon: Icon(Icons.school),
+            label: 'Skill',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
             label: 'Explore',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.help),
-            label: 'Help',
+            icon: Icon(Icons.settings),
+            label: 'Settings',
           ),
         ],
         currentIndex: _selectedIndex,

@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 class SkillDetailPage extends StatelessWidget {
   final String skillName;
   final List<Map<String, String>> users;
-  final Function(String, bool) updateCreditsCallback;
 
-  SkillDetailPage({required this.skillName, required this.users, required this.updateCreditsCallback});
+  SkillDetailPage({required this.skillName, required this.users});
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +25,7 @@ class SkillDetailPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ChatPage(
-                      userName: user['name']!,
-                      proficiency: user['proficiency']!,
-                      updateCreditsCallback: updateCreditsCallback,
-                      isHelping: false, // User is seeking help
-                    ),
+                    builder: (context) => ChatPage(userName: user['name']!),
                   ),
                 );
               },
@@ -45,11 +39,8 @@ class SkillDetailPage extends StatelessWidget {
 
 class ChatPage extends StatefulWidget {
   final String userName;
-  final String proficiency;
-  final Function(String, bool) updateCreditsCallback;
-  final bool isHelping;
 
-  ChatPage({required this.userName, required this.proficiency, required this.updateCreditsCallback, required this.isHelping});
+  ChatPage({required this.userName});
 
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -69,7 +60,6 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void _endChat() {
-    widget.updateCreditsCallback(widget.proficiency, widget.isHelping);
     Navigator.pop(context);
   }
 
