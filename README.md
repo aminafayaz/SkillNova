@@ -53,7 +53,14 @@ flutter run
 For Software:
 
 # Screenshots (Add at least 3)
-Screenshot1-Adding skill page
+Screenshot 1-Login page
+![hack4](https://github.com/user-attachments/assets/5c4ea3e0-a880-4968-8776-be15a7dfc929)
+
+
+
+
+Screenshot2-Adding skill page
+
 The skill page is used to add the users skills in order to sell their skill to help others.
 ![hack1](https://github.com/user-attachments/assets/7bd2ba5d-07a7-42db-adf7-dda33c6e52dd)
 
@@ -62,7 +69,8 @@ The skill page is used to add the users skills in order to sell their skill to h
 
 
 
-Screenshot2-Page to explore skills and connect with people
+Screenshot3-Page to explore skills and connect with people
+
 The explore page helps to find different skill sets and find the people with required skills to connect with them.
 This page is being followed by a chat page where we can chat with the right people and satisfy our requirements.
 
@@ -71,7 +79,8 @@ This page is being followed by a chat page where we can chat with the right peop
 
 
 
-Screenshot3-Settings page which contain logout option
+Screenshot4-Settings page which contain logout option
+
 This settings contais the logout option which helps the user to logout after the session.
 ![hack3](https://github.com/user-attachments/assets/9e9634cd-9c1a-4fe8-8543-4c70bb1415fc)
 
