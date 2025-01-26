@@ -1,4 +1,3 @@
-# Project Name:SkillNova 🎯
 
 
 ## Basic Details
@@ -56,15 +55,15 @@ For Software:
 
 Screenshot 1-Login page
 
-
-![hack4](https://github.com/user-attachments/assets/5c4ea3e0-a880-4968-8776-be15a7dfc929)
+![imgnew1](https://github.com/user-attachments/assets/51cbca61-3d6d-4b24-9d61-00e871b439fb)
 
 
 
 Screenshot 2-Register page
 This page is for registering new users into the app.
 
-![hack5](https://github.com/user-attachments/assets/14765ab9-c810-40e5-8b97-fe2b63aa5b9d)
+
+![imgnew2](https://github.com/user-attachments/assets/d2b210f2-8ac0-420a-8be8-5949377d12bf)
 
 
 
