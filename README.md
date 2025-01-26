@@ -32,8 +32,8 @@ It’s like bartering, but way cooler—where everyone’s time is valued equall
 For Software:
 - Languages used:Dart
 - Frameworks used:Flutter,Firebase
-- Libraries used
-- Tools used-
+- Libraries used-
+- Tools used-VS code,Android studio,Git,Github
 
 For Hardware:
 - [List main components]
@@ -43,23 +43,31 @@ For Hardware:
 ### Implementation
 For Software:
 # Installation
-[commands]
+
 
 # Run
-[commands]
+flutter run
+
 
 ### Project Documentation
 For Software:
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+Screenshot1-Adding skill page
+![hack1](https://github.com/user-attachments/assets/7bd2ba5d-07a7-42db-adf7-dda33c6e52dd)
+The skill page is used to add the users skills in order to sell their skill to help others.
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+
+Screenshot2-Page to explore skills and connect with people
+![hack2](https://github.com/user-attachments/assets/dacd8909-e7f3-4e08-add6-2ab858ec21ce)
+The explore page helps to find different skill sets and find the people with required skills to connect with them.
+This page is being followed by a chat page where we can chat with the right people and satisfy our requirements.
+
+Screenshot3-Settings page which contain logout option
+![hack3](https://github.com/user-attachments/assets/9e9634cd-9c1a-4fe8-8543-4c70bb1415fc)
+This settings contais the logout option which helps the user to logout after the session.
+
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
